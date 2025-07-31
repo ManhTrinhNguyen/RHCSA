@@ -10,6 +10,8 @@
 
 - [Soft link and hard link](#Soft-link-and-hard-link)
 
+- [Input and Output Redirect](#Input-and-Output-Redirect)
+
 ## Access the CLI 
 
 To get an IP Address : `ifconfig` -> Look for enp0s3
@@ -114,20 +116,61 @@ Create Dir :
 
 - If I create a file and I create **soft link** to that file. Once I create it, it acutally look for that **Inode** through that file . So that create a **soft link**. If I removed Source file it will remove **Destination Link**
 
-  **Hard Link** when deleting or renaming the source file the Hard Link will not change . It will remain the same as I copied
+ **Hard Link** when deleting or renaming the source file the Hard Link will not change . It will remain the same as I copied
 
-  To create **Hard Link**: `ln`
+ To create **Hard Link**: `ln`
 
-  To create **Soft Link**: `ln -s`
+ To create **Soft Link**: `ln -s`
 
-  **Soft Link** it is connecting **through my file**  to the **Inode**
+ **Soft Link** it is connecting **through my file**  to the **Inode**
 
-  **Hard Link** connecting straing to the **Inode**
+ **Hard Link** connecting straing to the **Inode**
 
+ **Link** is just like a shortcut in a regular term as if I creating a shortcut on my Desktop .
 
+ - I have a file located somewhere I have to go to that file all the time by navigating to that file system . So I will create a shortcut double click and run 
 
+`ls -li`: `i` stand for **inode** . This help me to find out the **inode** of this file . 
 
+- When I `ls -li tim` I will see a **inode** associate with my file `tim` in my current folder
 
+- But then I create a **Soft Link** for in `/tmp` folder associate with `/home/trinhnguyen/tim` file It will have a different **inode** number bcs It is remember as a **Link** it does not know that it is actually a file
+
+## Input and Output Redirect 
+
+There are 3 diffent types of Redirect in Linux :
+
+**Stdin** Standard input and it has file descriptor number as 0 
+
+**Stdout** Standard output and it has file descriptor number as 1 
+
+**Stderr** Standard error and it has file descriptor number as 2 
+
+Everything in Linux is consider as **File** . All those devices attached to my Linux System, monitor, keyboard, mouse or any of those are considered or seen by OS as a **File** 
+
+When we write something on screen from the Keyboard that coming in as **Standard Input** and it knocking for **File Descriptor 0**
+
+When we are showing that output on the screen that output actually going through the **File Output Descriptor 1** 
+
+If there is any error it will show up as the **File Descriptor 2**
+
+**Stdout** :
+
+- By default when running a command its output goes to the Terminal
+
+- The output of a command can be routed to a file using **>** symbol sign
+
+- For example : `ls -l > listings` Route the `ls -l` to a `listings` file
+
+- If using the same file for addition output or to **append** to the same file then use **>>**
+
+**Stdin**: 
+
+- Input is use when feeding file content to a file or script
+
+- For example : `cat < listings`
+
+- Using **mail** program : `mail -s "Office memo" allusers@abc.com < memoletter` . Give me an option indirect bring the content of memo or file into that program 
 
 
 
